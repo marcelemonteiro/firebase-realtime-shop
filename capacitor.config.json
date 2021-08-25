@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "firebase-shop",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
