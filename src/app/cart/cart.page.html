@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrinho</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let product of products" class="user-list">
+    <ion-label>
+      <h5>
+        {{ product.name }}
+      </h5>
+      <p>
+        {{ product.price | currency: 'BRL'}}
+      </p>
+      <p>
+        {{ product.category }}
+      </p>
+    </ion-label>
+
+    <div class="item-note" item-end>
+      <button ion-button clear (click)="removeItem(cart)">
+        <ion-icon name="close" style="zoom:2.0"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+</ion-content>
