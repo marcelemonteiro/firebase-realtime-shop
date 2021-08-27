@@ -12,10 +12,11 @@ export class CartService {
   constructor(private db: AngularFireDatabase) { }
 
   // Add to cart
-  addToCart(idProduto: string) {
+  addToCart(idProduto: string, quantidade: number) {
     this.cartListRef = this.db.list('/cart');
     return this.cartListRef.push({
-      idProduto
+      idProduto,
+      quantidade
     });
   }
 

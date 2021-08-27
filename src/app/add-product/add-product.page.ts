@@ -30,13 +30,11 @@ export class AddProductPage implements OnInit {
       return false;
     } else {
       this.service.createProduct(this.productForm.value).then(res => {
-        console.log(res);
         this.productForm.reset();
         this.router.navigate(['/home']);
       })
         .catch(error => console.log('ERRO =>' + error));
     }
-    console.log(this.productForm.value);
   }
 
 }

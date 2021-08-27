@@ -17,8 +17,6 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.fetchProducts();
-
     const productRes = this.productService.getProductList();
 
     productRes.snapshotChanges().subscribe(res => {
@@ -32,23 +30,14 @@ export class HomePage implements OnInit {
     });
   }
 
-  fetchProducts() {
-    this.productService.getProductList().valueChanges().subscribe(res => console.log(res));
-  }
-
   deleteProduct(id: string) {
-    console.log(id);
-
     if (window.confirm('Do you really want to delete?')) {
       this.productService.deleteProduct(id);
     }
   }
 
-  addToCart(idProduto: string) {
-    console.log('id produto -> ', idProduto);
-    this.cartService.addToCart(idProduto).then(res => {
-      console.log('home page add ');
-    });
+  addToCart(idProduto: string, quantidade: number) {
+    this.cartService.addToCart(idProduto, quantidade);
   }
 
 }
