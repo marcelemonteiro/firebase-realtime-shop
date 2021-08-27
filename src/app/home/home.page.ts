@@ -44,8 +44,11 @@ export class HomePage implements OnInit {
     }
   }
 
-  addToCart(id, quantidade) {
-    this.cartService.addToCart(id, quantidade);
+  addToCart(idProduto: string) {
+    console.log('id produto -> ', idProduto);
+    this.cartService.addToCart(idProduto).then(res => {
+      console.log('home page add ');
+    });
   }
 
 }

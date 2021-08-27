@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
+import { Product } from './Product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +12,23 @@ export class CartService {
   constructor(private db: AngularFireDatabase) { }
 
   // Add to cart
-  addToCart(idProduto: string, quantidade: number) {
+  addToCart(idProduto: string) {
     this.cartListRef = this.db.list('/cart');
-
     return this.cartListRef.push({
-      idProduto,
-      quantidade
+      idProduto
     });
   }
 
   // Get List
   getCartList() {
-    this.cartListRef = this.db.list('cart');
+    this.cartListRef = this.db.list('/cart');
     return this.cartListRef;
   }
 
+  // Remove Item from Card
   removeItem(id: string) {
     this.cartRef = this.db.object('/cart/' + id);
-    this.cartListRef.remove();
+    this.cartRef.remove();
   }
 
   // Delete All Cart

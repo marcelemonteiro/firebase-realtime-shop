@@ -8,8 +8,9 @@ import { ProductService } from '../shared/product.service';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
+  // Tentar usar Set!
   cart = [];
-  products: Array<any>;
+  products = [];
 
   constructor(
     private productService: ProductService,
@@ -19,7 +20,7 @@ export class CartPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.fetchProducts();
+    this.fetchProducts();
 
     const cartRes = this.cartService.getCartList();
     cartRes.snapshotChanges().subscribe(res => {
@@ -28,14 +29,15 @@ export class CartPage implements OnInit {
       res.forEach(item => {
         const c = item.payload.toJSON();
         // eslint-disable-next-line @typescript-eslint/dot-notation
-        c['$key'] = item.key;
+        // c['$key'] = item.key;
         this.cart.push(c);
 
         this.cart.forEach(cart => {
           this.productService.getProduct(cart.idProduto).valueChanges().subscribe(data => {
-            this.products.push(data);
+            this.products.push({ cardItemId: item.key, ...data });
           });
         });
+        console.log(this.products);
       });
     });
   }
@@ -44,8 +46,8 @@ export class CartPage implements OnInit {
     this.productService.getProductList().valueChanges().subscribe(res => console.log(res));
   }
 
-  removeItem(id) {
-    this.cartService.removeItem(id);
+  removeItem(cardItemId: string) {
+    this.cartService.removeItem(cardItemId);
   }
 
 }

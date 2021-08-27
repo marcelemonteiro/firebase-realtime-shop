@@ -35,9 +35,9 @@
         <ion-icon name="trash" style="zoom:2.0"></ion-icon>
       </button>
 
-      <button ion-button clear (click)="addToCart(product.$key, 1)">
-        <ion-icon name="add" style="zoom:2.0"></ion-icon>
-      </button>
+      <ion-button (click)="addToCart(product.$key)">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
     </div>
   </ion-item>
 </ion-content>
